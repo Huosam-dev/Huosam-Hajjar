@@ -1,0 +1,1083 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Huosam Hajjar — Full Stack Developer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800;900&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --blue-900:#0a1628;
+  --blue-800:#0d1f3c;
+  --blue-700:#0f2d5a;
+  --blue-600:#1240a0;
+  --blue-500:#1a56db;
+  --blue-400:#3b82f6;
+  --blue-300:#60a5fa;
+  --blue-200:#bfdbfe;
+  --blue-100:#dbeafe;
+  --blue-50:#eff6ff;
+  --white:#ffffff;
+  --off-white:#f8faff;
+  --silver:#e2e8f0;
+  --steel:#94a3b8;
+  --slate:#64748b;
+  --navy:#1e3a5f;
+  --glow:rgba(59,130,246,0.15);
+  --glow2:rgba(26,86,219,0.08);
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:'DM Sans',sans-serif;
+  background:var(--white);
+  color:var(--blue-900);
+  overflow-x:hidden;
+}
+
+/* ── HERO ─────────────────────────────────── */
+.hero{
+  min-height:100svh;
+  background:linear-gradient(135deg,var(--blue-900) 0%,var(--blue-800) 40%,var(--blue-700) 100%);
+  position:relative;
+  display:flex;
+  align-items:center;
+  overflow:hidden;
+}
+
+.hero::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%,rgba(59,130,246,0.18) 0%,transparent 60%),
+    radial-gradient(ellipse 50% 50% at 10% 80%,rgba(26,86,219,0.12) 0%,transparent 50%);
+}
+
+/* animated grid */
+.hero-grid{
+  position:absolute;
+  inset:0;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.03) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,0.03) 1px,transparent 1px);
+  background-size:60px 60px;
+  animation:gridDrift 20s linear infinite;
+}
+@keyframes gridDrift{
+  0%{transform:translate(0,0)}
+  100%{transform:translate(60px,60px)}
+}
+
+/* floating orbs */
+.orb{
+  position:absolute;
+  border-radius:50%;
+  filter:blur(60px);
+  animation:orbFloat 8s ease-in-out infinite;
+}
+.orb-1{width:400px;height:400px;background:rgba(59,130,246,0.12);top:-100px;right:-100px;animation-delay:0s}
+.orb-2{width:300px;height:300px;background:rgba(26,86,219,0.10);bottom:-50px;left:-50px;animation-delay:3s}
+.orb-3{width:200px;height:200px;background:rgba(96,165,250,0.08);top:50%;left:40%;animation-delay:5s}
+@keyframes orbFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-30px) scale(1.05)}
+}
+
+.hero-inner{
+  position:relative;
+  z-index:2;
+  max-width:1100px;
+  margin:0 auto;
+  padding:60px 24px;
+  width:100%;
+}
+
+.hero-badge{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  background:rgba(59,130,246,0.15);
+  border:1px solid rgba(59,130,246,0.3);
+  color:var(--blue-300);
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  letter-spacing:0.12em;
+  padding:6px 16px;
+  border-radius:100px;
+  margin-bottom:32px;
+  animation:fadeUp 0.6s ease both;
+}
+.hero-badge::before{
+  content:'';
+  width:6px;height:6px;
+  border-radius:50%;
+  background:var(--blue-400);
+  box-shadow:0 0 8px var(--blue-400);
+  animation:pulse 2s ease infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(0.8)}}
+
+.hero-name{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2.4rem,10vw,6rem);
+  font-weight:900;
+  color:var(--white);
+  line-height:1.0;
+  margin-bottom:8px;
+  animation:fadeUp 0.6s 0.1s ease both;
+}
+.hero-name span{
+  background:linear-gradient(135deg,var(--blue-300),var(--blue-400),#93c5fd);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+
+.hero-role{
+  font-size:1.15rem;
+  color:var(--blue-200);
+  font-weight:300;
+  letter-spacing:0.04em;
+  margin-bottom:28px;
+  animation:fadeUp 0.6s 0.2s ease both;
+}
+
+.hero-desc{
+  max-width:560px;
+  font-size:1rem;
+  color:rgba(191,219,254,0.75);
+  line-height:1.7;
+  margin-bottom:48px;
+  animation:fadeUp 0.6s 0.3s ease both;
+}
+
+/* tech pills */
+.tech-pills{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:56px;
+  animation:fadeUp 0.6s 0.4s ease both;
+}
+.tech-pill{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  padding:5px 12px;
+  border-radius:6px;
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.10);
+  color:var(--blue-200);
+  letter-spacing:0.04em;
+  transition:all 0.2s;
+}
+.tech-pill:hover{
+  background:rgba(59,130,246,0.2);
+  border-color:rgba(59,130,246,0.4);
+  color:var(--white);
+}
+
+/* stats row */
+.hero-stats{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  animation:fadeUp 0.6s 0.5s ease both;
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  overflow:hidden;
+  backdrop-filter:blur(20px);
+  background:rgba(255,255,255,0.04);
+  max-width:400px;
+}
+@media(min-width:600px){
+  .hero-stats{
+    grid-template-columns:repeat(4,1fr);
+    max-width:560px;
+  }
+}
+.stat{
+  flex:1;
+  padding:20px 16px;
+  border-right:1px solid rgba(255,255,255,0.06);
+  border-bottom:1px solid rgba(255,255,255,0.06);
+  text-align:center;
+}
+.stat:nth-child(2n){border-right:none}
+.stat:nth-child(3),.stat:nth-child(4){border-bottom:none}
+@media(min-width:600px){
+  .stat:nth-child(2n){border-right:1px solid rgba(255,255,255,0.06)}
+  .stat:last-child{border-right:none}
+  .stat{border-bottom:none}
+}
+.stat-n{
+  font-family:'Playfair Display',serif;
+  font-size:2rem;
+  font-weight:800;
+  color:var(--white);
+  line-height:1;
+  margin-bottom:4px;
+}
+.stat-n span{color:var(--blue-400)}
+.stat-l{font-size:0.68rem;color:var(--blue-200);letter-spacing:0.06em;text-transform:uppercase}
+
+/* hero right decoration */
+.hero-deco{
+  position:absolute;
+  right:0;
+  top:50%;
+  transform:translateY(-50%);
+  width:380px;
+  display:none;
+}
+@media(min-width:900px){.hero-deco{display:block}}
+
+.deco-card{
+  background:rgba(255,255,255,0.05);
+  backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,0.10);
+  border-radius:20px;
+  padding:24px;
+  margin-bottom:16px;
+  animation:fadeLeft 0.8s ease both;
+}
+.deco-card:nth-child(2){animation-delay:0.2s;margin-left:40px}
+.deco-card:nth-child(3){animation-delay:0.4s}
+@keyframes fadeLeft{from{opacity:0;transform:translateX(40px)}to{opacity:1;transform:translateX(0)}}
+
+.deco-label{font-size:0.68rem;color:var(--blue-300);font-family:'DM Mono',monospace;letter-spacing:0.1em;margin-bottom:8px}
+.deco-value{font-size:1rem;color:var(--white);font-weight:500}
+.deco-bar{height:3px;background:rgba(255,255,255,0.08);border-radius:2px;margin-top:10px;overflow:hidden}
+.deco-fill{height:100%;border-radius:2px;background:linear-gradient(90deg,var(--blue-500),var(--blue-300));animation:fillBar 1.5s ease both}
+@keyframes fillBar{from{width:0}to{width:var(--w)}}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SECTION WRAPPER ──────────────────────────── */
+.section{
+  padding:60px 24px;
+  max-width:1100px;
+  margin:0 auto;
+}
+.section-full{
+  padding:60px 24px;
+  position:relative;
+}
+.section-full .inner{
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* section label */
+.sec-label{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+.sec-label-line{
+  flex:1;
+  height:1px;
+  background:linear-gradient(90deg,var(--blue-200),transparent);
+  max-width:60px;
+}
+.sec-label-text{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  letter-spacing:0.14em;
+  color:var(--blue-500);
+  text-transform:uppercase;
+}
+
+.sec-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(2rem,4vw,3rem);
+  font-weight:800;
+  color:var(--blue-900);
+  margin-bottom:56px;
+  line-height:1.15;
+}
+.sec-title em{
+  font-style:normal;
+  color:var(--blue-500);
+}
+
+/* ── PROJECTS ─────────────────────────────────── */
+.projects-bg{
+  background:var(--off-white);
+}
+
+.projects-grid{
+  display:grid;
+  gap:28px;
+}
+
+.proj-card{
+  background:var(--white);
+  border:1px solid var(--silver);
+  border-radius:20px;
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+  transition:transform 0.3s,box-shadow 0.3s,border-color 0.3s;
+  display:grid;
+  grid-template-columns:1fr;
+  gap:24px;
+  align-items:start;
+}
+@media(min-width:768px){
+  .proj-card{
+    grid-template-columns:1fr 1fr;
+    padding:40px;
+    gap:40px;
+  }
+}
+.proj-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:var(--proj-accent,var(--blue-500));
+}
+.proj-card:hover{
+  transform:translateY(-4px);
+  box-shadow:0 24px 60px rgba(18,64,160,0.10);
+  border-color:var(--blue-200);
+}
+
+/* proj number watermark */
+.proj-num{
+  position:absolute;
+  bottom:20px;right:24px;
+  font-family:'Playfair Display',serif;
+  font-size:3.5rem;
+  font-weight:900;
+  color:var(--blue-200);
+  opacity:0.35;
+  line-height:1;
+  user-select:none;
+  pointer-events:none;
+}
+
+/* left col */
+.proj-icon{
+  width:52px;height:52px;
+  border-radius:14px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  margin-bottom:16px;
+  background:var(--blue-50);
+}
+.proj-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--blue-900);
+  margin-bottom:4px;
+}
+.proj-subtitle{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  color:var(--blue-500);
+  letter-spacing:0.08em;
+  margin-bottom:14px;
+}
+.proj-url{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  text-decoration:none;
+  margin-bottom:20px;
+}
+.proj-url-name{
+  font-family:'Playfair Display',serif;
+  font-size:1.15rem;
+  font-weight:700;
+  color:var(--blue-600);
+  transition:color 0.2s;
+}
+.proj-url-full{
+  font-family:'DM Mono',monospace;
+  font-size:0.78rem;
+  color:var(--blue-400);
+  transition:color 0.2s;
+}
+.proj-url:hover .proj-url-name{color:var(--blue-500)}
+.proj-url:hover .proj-url-full{color:var(--blue-500)}
+
+.proj-desc{
+  font-size:0.92rem;
+  color:var(--slate);
+  line-height:1.7;
+  margin-bottom:24px;
+}
+
+.highlights{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+.highlight{
+  display:flex;
+  align-items:flex-start;
+  gap:10px;
+  font-size:0.86rem;
+  color:var(--navy);
+  line-height:1.5;
+}
+.highlight::before{
+  content:'';
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--proj-accent,var(--blue-500));
+  margin-top:7px;
+  flex-shrink:0;
+}
+
+/* right col */
+.proj-right{}
+.infra-label{
+  font-family:'DM Mono',monospace;
+  font-size:0.66rem;
+  letter-spacing:0.12em;
+  color:var(--steel);
+  text-transform:uppercase;
+  margin-bottom:10px;
+  margin-top:20px;
+}
+.infra-label:first-child{margin-top:0}
+
+.tag-grid{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-bottom:4px;
+}
+.tag{
+  font-family:'DM Mono',monospace;
+  font-size:0.72rem;
+  padding:4px 10px;
+  border-radius:6px;
+  background:var(--blue-50);
+  border:1px solid var(--blue-100);
+  color:var(--blue-700);
+  display:flex;
+  align-items:center;
+  gap:5px;
+  white-space:nowrap;
+}
+.tag-dot{
+  width:5px;height:5px;
+  border-radius:50%;
+  background:var(--blue-400);
+  flex-shrink:0;
+}
+.tag.green .tag-dot{background:#22c55e}
+.tag.green{background:#f0fdf4;border-color:#bbf7d0;color:#166534}
+.tag.orange .tag-dot{background:#f97316}
+.tag.orange{background:#fff7ed;border-color:#fed7aa;color:#9a3412}
+.tag.violet .tag-dot{background:#8b5cf6}
+.tag.violet{background:#f5f3ff;border-color:#ddd6fe;color:#5b21b6}
+.tag.slate .tag-dot{background:#94a3b8}
+.tag.slate{background:#f8fafc;border-color:#e2e8f0;color:#475569}
+.tag.cyan .tag-dot{background:#06b6d4}
+.tag.cyan{background:#ecfeff;border-color:#a5f3fc;color:#155e75}
+
+/* mobile proj card */
+
+
+/* ── TECH PROFILE ─────────────────────────────── */
+.tech-section{
+  background:linear-gradient(135deg,var(--blue-900),var(--blue-800));
+  color:var(--white);
+}
+.tech-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+  gap:20px;
+}
+.tech-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:16px;
+  padding:28px;
+  backdrop-filter:blur(10px);
+  transition:background 0.3s,border-color 0.3s;
+}
+.tech-card:hover{
+  background:rgba(255,255,255,0.08);
+  border-color:rgba(59,130,246,0.3);
+}
+.tech-card-icon{
+  font-size:1.6rem;
+  margin-bottom:12px;
+}
+.tech-card-title{
+  font-size:0.78rem;
+  font-family:'DM Mono',monospace;
+  letter-spacing:0.1em;
+  color:var(--blue-300);
+  text-transform:uppercase;
+  margin-bottom:12px;
+}
+.tech-card-items{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+}
+.tech-item{
+  font-size:0.8rem;
+  color:rgba(255,255,255,0.7);
+  background:rgba(255,255,255,0.06);
+  border:1px solid rgba(255,255,255,0.08);
+  padding:3px 10px;
+  border-radius:5px;
+  font-family:'DM Mono',monospace;
+}
+
+/* ── FOOTER ───────────────────────────────────── */
+footer{
+  background:var(--blue-900);
+  color:var(--blue-200);
+  text-align:center;
+  padding:40px;
+  font-size:0.85rem;
+  border-top:1px solid rgba(255,255,255,0.06);
+}
+footer strong{color:var(--white)}
+footer .footer-links{
+  display:flex;
+  justify-content:center;
+  gap:24px;
+  margin-top:12px;
+}
+footer a{
+  color:var(--blue-400);
+  text-decoration:none;
+  font-family:'DM Mono',monospace;
+  font-size:0.78rem;
+  transition:color 0.2s;
+}
+footer a:hover{color:var(--white)}
+
+/* ── SCROLL REVEAL ────────────────────────────── */
+.reveal{
+  opacity:0;
+  transform:translateY(32px);
+  transition:opacity 0.7s ease,transform 0.7s ease;
+}
+.reveal.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+.reveal-delay-1{transition-delay:0.1s}
+.reveal-delay-2{transition-delay:0.2s}
+.reveal-delay-3{transition-delay:0.3s}
+.reveal-delay-4{transition-delay:0.4s}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ──────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+
+  <div class="hero-inner">
+    <div class="hero-badge">Available for Projects</div>
+
+    <h1 class="hero-name">
+      Huosam<br><span>Hajjar.</span>
+    </h1>
+    <p class="hero-role">Full Stack Developer &nbsp;·&nbsp; SaaS Builder &nbsp;·&nbsp; AI Integration Specialist</p>
+    <p class="hero-desc">
+      Building production-ready SaaS products, client platforms and AI-powered tools
+      from design to deployment — across Belgium, Jordan and Europe.
+    </p>
+
+    <div class="tech-pills">
+      <span class="tech-pill">React</span>
+      <span class="tech-pill">Next.js</span>
+      <span class="tech-pill">TypeScript</span>
+      <span class="tech-pill">Supabase</span>
+      <span class="tech-pill">Firebase</span>
+      <span class="tech-pill">Stripe</span>
+      <span class="tech-pill">Claude AI</span>
+      <span class="tech-pill">Vercel</span>
+      <span class="tech-pill">Netlify</span>
+      <span class="tech-pill">AWS</span>
+      <span class="tech-pill">Tailwind CSS</span>
+      <span class="tech-pill">PostgreSQL</span>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n">0<span>5</span></div>
+        <div class="stat-l">Live Projects</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">2<span>1</span></div>
+        <div class="stat-l">Languages</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">0<span>3</span></div>
+        <div class="stat-l">Gateways</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">0<span>1</span></div>
+        <div class="stat-l">Web SaaS</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- deco right -->
+  <div class="hero-deco">
+    <div class="deco-card">
+      <div class="deco-label">SAAS ARCHITECTURE</div>
+      <div class="deco-value">React + Supabase + Stripe</div>
+      <div class="deco-bar"><div class="deco-fill" style="--w:92%"></div></div>
+    </div>
+    <div class="deco-card">
+      <div class="deco-label">AI INTEGRATION</div>
+      <div class="deco-value">Claude API + PostHog</div>
+      <div class="deco-bar"><div class="deco-fill" style="--w:85%"></div></div>
+    </div>
+    <div class="deco-card">
+      <div class="deco-label">CLOUD & DEPLOYMENT</div>
+      <div class="deco-value">Vercel · Netlify · Firebase · AWS</div>
+      <div class="deco-bar"><div class="deco-fill" style="--w:96%"></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ── PROJECTS ────────────────────────────────────── -->
+<div class="section-full projects-bg">
+  <div class="inner">
+    <div class="section" style="padding:60px 0">
+      <div class="sec-label reveal">
+        <div class="sec-label-line"></div>
+        <span class="sec-label-text">Portfolio</span>
+      </div>
+      <h2 class="sec-title reveal">Production <em>Projects</em></h2>
+
+      <div class="projects-grid">
+
+        <!-- CVcraft -->
+        <div class="proj-card reveal" style="--proj-accent:#6d5ff0">
+          <div class="proj-num">01</div>
+          <div class="proj-left">
+            <div class="proj-icon">🧠</div>
+            <div class="proj-name">CVcraft</div>
+            <div class="proj-subtitle">OWN SAAS · AI-POWERED · 21 LANGUAGES</div>
+            <a class="proj-url" href="https://getcvcraft.app" target="_blank">
+            <span class="proj-url-name">Getcvcraft.app ↗</span>
+            <span class="proj-url-full">https://getcvcraft.app</span>
+          </a>
+            <p class="proj-desc">AI-powered CV builder SaaS targeting the European job market. Users build and preview their CV free — PDF download requires a Stripe subscription. Built solo from zero to production.</p>
+            <div class="highlights">
+              <div class="highlight">AI generates a complete professional CV in seconds</div>
+              <div class="highlight">21-language support for the full European market</div>
+              <div class="highlight">Freemium model — free preview, paid PDF via Stripe</div>
+              <div class="highlight">Stripe webhook updates <code style="font-size:0.8em;background:#f0f0ff;padding:1px 5px;border-radius:3px">is_pro</code> flag in Supabase</div>
+              <div class="highlight">Resend for transactional emails · PostHog for analytics</div>
+              <div class="highlight">SEO optimized — Google Search Console, meta tags, Open Graph</div>
+              <div class="highlight">Fully responsive — mobile &amp; desktop optimized for performance</div>
+            </div>
+          </div>
+          <div class="proj-right">
+            <div class="infra-label">Frontend</div>
+            <div class="tag-grid">
+              <div class="tag"><div class="tag-dot"></div>React</div>
+              <div class="tag"><div class="tag-dot"></div>TypeScript</div>
+              <div class="tag"><div class="tag-dot"></div>Vite</div>
+              <div class="tag"><div class="tag-dot"></div>Tailwind CSS</div>
+            </div>
+            <div class="infra-label">Backend & Database</div>
+            <div class="tag-grid">
+              <div class="tag green"><div class="tag-dot"></div>Supabase</div>
+              <div class="tag green"><div class="tag-dot"></div>PostgreSQL</div>
+              <div class="tag green"><div class="tag-dot"></div>Edge Functions</div>
+              <div class="tag green"><div class="tag-dot"></div>Supabase Storage</div>
+            </div>
+            <div class="infra-label">Payments & AI</div>
+            <div class="tag-grid">
+              <div class="tag green"><div class="tag-dot"></div>Stripe</div>
+              <div class="tag violet"><div class="tag-dot"></div>Claude AI API</div>
+              <div class="tag orange"><div class="tag-dot"></div>Resend</div>
+              <div class="tag orange"><div class="tag-dot"></div>PostHog</div>
+            </div>
+            <div class="infra-label">Infrastructure</div>
+            <div class="tag-grid">
+              <div class="tag slate"><div class="tag-dot"></div>GitHub</div>
+              <div class="tag cyan"><div class="tag-dot"></div>Vercel CI/CD</div>
+              <div class="tag slate"><div class="tag-dot"></div>Namecheap DNS</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google OAuth</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Search Console</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- WebMaxPro -->
+        <div class="proj-card reveal reveal-delay-1" style="--proj-accent:#1a56db">
+          <div class="proj-num">02</div>
+          <div class="proj-left">
+            <div class="proj-icon">🌐</div>
+            <div class="proj-name">WebMaxPro</div>
+            <div class="proj-subtitle">OWN AGENCY · NEXT.JS · 4 LANGUAGES</div>
+            <a class="proj-url" href="https://webmaxpro.com" target="_blank">
+            <span class="proj-url-name">Webmaxpro.com ↗</span>
+            <span class="proj-url-full">https://webmaxpro.com</span>
+          </a>
+            <p class="proj-desc">Professional freelance web agency platform built with Next.js and Chakra UI. Multilingual (EN, AR, NL, DE) with full RTL Arabic support, Stripe checkout, Sentry error tracking and Datadog monitoring.</p>
+            <div class="highlights">
+              <div class="highlight">Multilingual in 4 languages with native Arabic RTL</div>
+              <div class="highlight">Stripe integration — 34 payment methods: PayPal, Visa, Mastercard, Amex, Klarna, Bancontact, Apple Pay, Google Pay & more</div>
+              <div class="highlight">Sentry error tracking + Datadog RUM monitoring</div>
+              <div class="highlight">Google Analytics + GTM for marketing data</div>
+              <div class="highlight">Calendly integration for client meeting booking</div>
+            </div>
+          </div>
+          <div class="proj-right">
+            <div class="infra-label">Frontend Framework</div>
+            <div class="tag-grid">
+              <div class="tag"><div class="tag-dot"></div>Next.js</div>
+              <div class="tag"><div class="tag-dot"></div>React</div>
+              <div class="tag"><div class="tag-dot"></div>Chakra UI</div>
+              <div class="tag"><div class="tag-dot"></div>Emotion</div>
+            </div>
+            <div class="infra-label">Payments — 34 Methods</div>
+            <div class="tag-grid">
+              <div class="tag green"><div class="tag-dot"></div>Stripe</div>
+              <div class="tag green"><div class="tag-dot"></div>PayPal</div>
+              <div class="tag green"><div class="tag-dot"></div>Visa</div>
+              <div class="tag green"><div class="tag-dot"></div>Mastercard</div>
+              <div class="tag green"><div class="tag-dot"></div>American Express</div>
+              <div class="tag green"><div class="tag-dot"></div>Klarna</div>
+              <div class="tag green"><div class="tag-dot"></div>Bancontact</div>
+              <div class="tag green"><div class="tag-dot"></div>Apple Pay</div>
+              <div class="tag green"><div class="tag-dot"></div>Google Pay</div>
+              <div class="tag green"><div class="tag-dot"></div>34 Methods Total</div>
+            </div>
+            <div class="infra-label">Analytics & Monitoring</div>
+            <div class="tag-grid">
+              <div class="tag orange"><div class="tag-dot"></div>Google Analytics</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Tag Manager</div>
+              <div class="tag orange"><div class="tag-dot"></div>Sentry</div>
+              <div class="tag violet"><div class="tag-dot"></div>Datadog RUM</div>
+            </div>
+            <div class="infra-label">Infrastructure</div>
+            <div class="tag-grid">
+              <div class="tag slate"><div class="tag-dot"></div>index.html</div>
+              <div class="tag slate"><div class="tag-dot"></div>GitHub</div>
+              <div class="tag cyan"><div class="tag-dot"></div>Netlify CDN</div>
+              <div class="tag orange"><div class="tag-dot"></div>AWS</div>
+              <div class="tag slate"><div class="tag-dot"></div>Namecheap DNS</div>
+              <div class="tag slate"><div class="tag-dot"></div>SSL via Netlify</div>
+              <div class="tag slate"><div class="tag-dot"></div>Calendly</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Search Console</div>
+            </div>
+            <div class="infra-label">SEO & Performance</div>
+            <div class="tag-grid">
+              <div class="tag green"><div class="tag-dot"></div>SSL / HTTPS</div>
+              <div class="tag"><div class="tag-dot"></div>Mobile Responsive</div>
+              <div class="tag"><div class="tag-dot"></div>Desktop Optimized</div>
+              <div class="tag"><div class="tag-dot"></div>Performance 100%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Nuevo Stylo -->
+        <div class="proj-card reveal reveal-delay-2" style="--proj-accent:#f97316">
+          <div class="proj-num">03</div>
+          <div class="proj-left">
+            <div class="proj-icon">💈</div>
+            <div class="proj-name">Nuevo Stylo</div>
+            <div class="proj-subtitle">CLIENT · BELGIUM · FIREBASE · BANCONTACT</div>
+            <a class="proj-url" href="https://nuevostylo.com" target="_blank">
+            <span class="proj-url-name">Nuevostylo.com ↗</span>
+            <span class="proj-url-full">https://nuevostylo.com</span>
+          </a>
+            <p class="proj-desc">Premium barbershop site in Maasmechelen, Belgium. Multilingual (NL, EN, AR) with a custom real-time appointment booking system connected to Firebase Firestore and Bancontact payment integration.</p>
+            <div class="highlights">
+              <div class="highlight">Dutch, English and Arabic with full RTL layout</div>
+              <div class="highlight">Custom booking → saved to Firebase Firestore in real-time</div>
+              <div class="highlight">Bancontact — the standard payment method in Belgium</div>
+              <div class="highlight">Google Reviews 4.8 ⭐ · 59 reviews · Google Maps</div>
+            </div>
+          </div>
+          <div class="proj-right">
+            <div class="infra-label">Frontend</div>
+            <div class="tag-grid">
+              <div class="tag"><div class="tag-dot"></div>HTML / CSS</div>
+              <div class="tag"><div class="tag-dot"></div>Vanilla JS</div>
+              <div class="tag violet"><div class="tag-dot"></div>RTL Arabic</div>
+            </div>
+            <div class="infra-label">Backend & Payments</div>
+            <div class="tag-grid">
+              <div class="tag orange"><div class="tag-dot"></div>Firebase Firestore</div>
+              <div class="tag green"><div class="tag-dot"></div>Bancontact</div>
+            </div>
+            <div class="infra-label">Auth</div>
+            <div class="tag-grid">
+              <div class="tag orange"><div class="tag-dot"></div>Firebase Authentication</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Sign-In</div>
+            </div>
+            <div class="infra-label">Infrastructure</div>
+            <div class="tag-grid">
+              <div class="tag slate"><div class="tag-dot"></div>index.html</div>
+              <div class="tag slate"><div class="tag-dot"></div>GitHub</div>
+              <div class="tag orange"><div class="tag-dot"></div>Firebase Hosting</div>
+              <div class="tag slate"><div class="tag-dot"></div>SSL via Firebase</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Maps</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Reviews</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Search Console</div>
+            </div>
+            <div class="infra-label">SEO & Performance</div>
+            <div class="tag-grid">
+              <div class="tag green"><div class="tag-dot"></div>SSL / HTTPS</div>
+              <div class="tag"><div class="tag-dot"></div>Mobile Responsive</div>
+              <div class="tag"><div class="tag-dot"></div>Performance Optimized</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Talla Restaurant -->
+        <div class="proj-card reveal reveal-delay-3" style="--proj-accent:#22c55e">
+          <div class="proj-num">04</div>
+          <div class="proj-left">
+            <div class="proj-icon">🍽️</div>
+            <div class="proj-name">Talla Restaurant</div>
+            <div class="proj-subtitle">CLIENT · JORDAN · ARABIC RTL · WHATSAPP</div>
+            <a class="proj-url" href="https://tallarestaurant.com" target="_blank">
+            <span class="proj-url-name">Tallarestaurant.com ↗</span>
+            <span class="proj-url-full">https://tallarestaurant.com</span>
+          </a>
+            <p class="proj-desc">Arabic-language restaurant website for a traditional Jordanian mansaf restaurant in Amman. Full RTL layout, digital menu, WhatsApp ordering, catering packages, and Google Maps integration.</p>
+            <div class="highlights">
+              <div class="highlight">100% Arabic RTL built for the Jordanian market</div>
+              <div class="highlight">WhatsApp ordering — individual, family and event sizes</div>
+              <div class="highlight">Catering packages for 20+ people · Delivery in Amman</div>
+              <div class="highlight">Google Maps · Open Graph meta for social sharing</div>
+            </div>
+          </div>
+          <div class="proj-right">
+            <div class="infra-label">Platform & Layout</div>
+            <div class="tag-grid">
+              <div class="tag violet"><div class="tag-dot"></div>Gamma Builder</div>
+              <div class="tag orange"><div class="tag-dot"></div>Arabic RTL</div>
+              <div class="tag"><div class="tag-dot"></div>Open Graph</div>
+            </div>
+            <div class="infra-label">Ordering & Location</div>
+            <div class="tag-grid">
+              <div class="tag green"><div class="tag-dot"></div>WhatsApp API</div>
+              <div class="tag orange"><div class="tag-dot"></div>Google Maps</div>
+            </div>
+            <div class="infra-label">Infrastructure</div>
+            <div class="tag-grid">
+              <div class="tag violet"><div class="tag-dot"></div>Gamma Hosting</div>
+              <div class="tag slate"><div class="tag-dot"></div>Namecheap DNS</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- EuroBudget Pro -->
+        <div class="proj-card reveal reveal-delay-4" style="--proj-accent:#06b6d4">
+          <div class="proj-num">05</div>
+          <div class="proj-left">
+            <div class="proj-icon">💶</div>
+            <div class="proj-name">EuroBudget Pro</div>
+            <div class="proj-subtitle">WEB TOOL · EUROPE · PRIVACY-FIRST · CLIENT-SIDE</div>
+            <a class="proj-url" href="https://sunny-kleicha-313c27.netlify.app" target="_blank">
+            <span class="proj-url-name">EuroBudget Pro ↗</span>
+            <span class="proj-url-full">https://sunny-kleicha-313c27.netlify.app</span>
+          </a>
+            <p class="proj-desc">Free monthly budget calculator for European households. Calculates savings, expense ratio and financial health score — all logic runs 100% in the browser. Zero backend, zero data collection, zero signup.</p>
+            <div class="highlights">
+              <div class="highlight">Instant savings breakdown — no loading, no server</div>
+              <div class="highlight">Savings rate, expense ratio, annual savings, daily budget</div>
+              <div class="highlight">Zero signup · Zero tracking · 100% private</div>
+              <div class="highlight">Fully responsive · Built for Europe with Euro (€)</div>
+            </div>
+          </div>
+          <div class="proj-right">
+            <div class="infra-label">Frontend</div>
+            <div class="tag-grid">
+              <div class="tag"><div class="tag-dot"></div>HTML / CSS</div>
+              <div class="tag"><div class="tag-dot"></div>Vanilla JS</div>
+              <div class="tag green"><div class="tag-dot"></div>Client-Side Only</div>
+            </div>
+            <div class="infra-label">Privacy</div>
+            <div class="tag-grid">
+              <div class="tag slate"><div class="tag-dot"></div>No Database</div>
+              <div class="tag slate"><div class="tag-dot"></div>No Auth</div>
+              <div class="tag slate"><div class="tag-dot"></div>No Tracking</div>
+            </div>
+            <div class="infra-label">Infrastructure</div>
+            <div class="tag-grid">
+              <div class="tag slate"><div class="tag-dot"></div>index.html</div>
+              <div class="tag slate"><div class="tag-dot"></div>GitHub</div>
+              <div class="tag cyan"><div class="tag-dot"></div>Netlify</div>
+              <div class="tag slate"><div class="tag-dot"></div>SSL via Netlify</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── TECH PROFILE ─────────────────────────────── -->
+<div class="section-full tech-section">
+  <div class="inner">
+    <div class="section" style="padding:60px 0">
+      <div class="sec-label reveal">
+        <div class="sec-label-line" style="background:linear-gradient(90deg,rgba(59,130,246,0.5),transparent)"></div>
+        <span class="sec-label-text" style="color:var(--blue-300)">Skills</span>
+      </div>
+      <h2 class="sec-title reveal" style="color:var(--white)">Technical <em style="color:var(--blue-300)">Profile</em></h2>
+
+      <div class="tech-grid">
+        <div class="tech-card reveal">
+          <div class="tech-card-icon">⚛️</div>
+          <div class="tech-card-title">Frontend</div>
+          <div class="tech-card-items">
+            <span class="tech-item">React</span>
+            <span class="tech-item">Next.js</span>
+            <span class="tech-item">TypeScript</span>
+            <span class="tech-item">JavaScript</span>
+            <span class="tech-item">Tailwind CSS</span>
+            <span class="tech-item">Chakra UI</span>
+            <span class="tech-item">Emotion</span>
+            <span class="tech-item">Vite</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-1">
+          <div class="tech-card-icon">🗄️</div>
+          <div class="tech-card-title">Backend & Database</div>
+          <div class="tech-card-items">
+            <span class="tech-item">Supabase</span>
+            <span class="tech-item">PostgreSQL</span>
+            <span class="tech-item">Firebase</span>
+            <span class="tech-item">Firestore</span>
+            <span class="tech-item">Edge Functions</span>
+            <span class="tech-item">REST APIs</span>
+            <span class="tech-item">Row Level Security</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-1">
+          <div class="tech-card-icon">🔐</div>
+          <div class="tech-card-title">Authentication</div>
+          <div class="tech-card-items">
+            <span class="tech-item">Supabase Auth</span>
+            <span class="tech-item">Firebase Auth</span>
+            <span class="tech-item">Google OAuth</span>
+            <span class="tech-item">Google Sign-In</span>
+            <span class="tech-item">Google Search Console</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-2">
+          <div class="tech-card-icon">⚡</div>
+          <div class="tech-card-title">SEO & Performance</div>
+          <div class="tech-card-items">
+            <span class="tech-item">Google Search Console</span>
+            <span class="tech-item">SSL / HTTPS</span>
+            <span class="tech-item">Core Web Vitals</span>
+            <span class="tech-item">Performance 100%</span>
+            <span class="tech-item">Mobile Responsive</span>
+            <span class="tech-item">Desktop Optimized</span>
+            <span class="tech-item">SEO Meta Tags</span>
+            <span class="tech-item">Open Graph</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-2">
+          <div class="tech-card-icon">☁️</div>
+          <div class="tech-card-title">Cloud & Deployment</div>
+          <div class="tech-card-items">
+            <span class="tech-item">GitHub</span>
+            <span class="tech-item">Vercel</span>
+            <span class="tech-item">Netlify</span>
+            <span class="tech-item">Firebase Hosting</span>
+            <span class="tech-item">AWS</span>
+            <span class="tech-item">CI/CD</span>
+            <span class="tech-item">Namecheap DNS</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-3">
+          <div class="tech-card-icon">💳</div>
+          <div class="tech-card-title">Payments</div>
+          <div class="tech-card-items">
+            <span class="tech-item">Stripe</span>
+            <span class="tech-item">Stripe Webhooks</span>
+            <span class="tech-item">Stripe Checkout</span>
+            <span class="tech-item">Bancontact</span>
+            <span class="tech-item">Apple Pay</span>
+            <span class="tech-item">Google Pay</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-1">
+          <div class="tech-card-icon">🤖</div>
+          <div class="tech-card-title">AI & Automation</div>
+          <div class="tech-card-items">
+            <span class="tech-item">Claude AI API</span>
+            <span class="tech-item">AI Workflow Design</span>
+            <span class="tech-item">Prompt Engineering</span>
+            <span class="tech-item">Cursor Editor</span>
+            <span class="tech-item">Resend</span>
+          </div>
+        </div>
+        <div class="tech-card reveal reveal-delay-2">
+          <div class="tech-card-icon">📊</div>
+          <div class="tech-card-title">Analytics & Monitoring</div>
+          <div class="tech-card-items">
+            <span class="tech-item">PostHog</span>
+            <span class="tech-item">Google Analytics</span>
+            <span class="tech-item">Google Tag Manager</span>
+            <span class="tech-item">Datadog RUM</span>
+            <span class="tech-item">Sentry</span>
+            <span class="tech-item">Google Search Console</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer>
+  <strong>Huosam Hajjar</strong> &nbsp;·&nbsp; Full Stack Developer
+  <div style="margin:16px 0 8px;display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap">
+    <a href="mailto:Hajjarhuosam@gmail.com" style="color:var(--blue-300);text-decoration:none;font-family:'DM Mono',monospace;font-size:0.82rem;display:flex;align-items:center;gap:6px">
+      <span>✉</span> Hajjarhuosam@gmail.com
+    </a>
+    <a href="https://wa.me/32495345140" target="_blank" style="color:#25d366;text-decoration:none;font-family:'DM Mono',monospace;font-size:0.82rem;display:flex;align-items:center;gap:6px">
+      <span>📱</span> +32 495 345 140
+    </a>
+  </div>
+  <div class="footer-links">
+    <a href="https://webmaxpro.com" target="_blank">webmaxpro.com</a>
+    <a href="https://getcvcraft.app" target="_blank">getcvcraft.app</a>
+    <a href="https://github.com/Huosam-dev" target="_blank">GitHub</a>
+  </div>
+</footer>
+
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
